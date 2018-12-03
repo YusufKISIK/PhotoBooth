@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  </link>
+  <style id="webmakerstyle">
+    html {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #009688;
+    }
+
+    #app {
+      border: 1px solid #fff;
+      width: 80%;
+      text-align: center;
+      margin: auto;
+      padding: 5px;
+      position: relative;
+      background-color: #ff9800;
+      margin-top: 10px;
+
+    }
+
+
+    .ekran {
+      width: 100%;
+      min-height: 80vh;
+      margin: 2px;
+      display: none;
+      transition: all .3s;
+    }
+
+    #ekran-1 {
+      display: block;
+      left: 0px;
+    }
+
+    #ekran-2 {
+      position: relative;
+    }
+
+    #siklar {
+      width: 100%;
+      margin: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      /* Bu özellik display flex olduğunda yeni satır olmasına izin veriyor */
+      flex-wrap: wrap;
+
+      position: absolute;
+      bottom: 20%
+    }
+
+
+    #siklar>.secenek {
+      border-radius: 8px;
+
+      width: 100%;
+      background-color: #FFB74D;
+      margin: 20px;
+      height: 150px;
+      text-align: center;
+      font-size: 2em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .secili {
+      visibility: hidden;
+      font-size: 1.5em;
+      margin-left: 1em;
+    }
+
+    #soru {
+      font-size: 1.5em;
+    }
+  </style>
+</head>
+
+<body>
+  <!DOCTYPE html>
+  <html>
+
+  <head>
+    <title>Page Title</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <h1>PhotoBooth</h1>
+      <hr>
+      <div class="ekran" id="ekran-1">
+        <h2>ekran1</h2>
+      </div>
+
+      <div class="ekran" id="ekran-2">
+        <h2>Soru</h2>
+        <p id="soru"> </p>
+        <div id="siklar">
+          <div class="secenek"> <b>A)</b>
+            <div id="a"></div>
+            <div class="secili"> ✅ </div>
+          </div>
+          <div class="secenek"> <b>W)</b>
+            <div id="b"></div>
+            <div class="secili"> ✅ </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ekran" id="ekran-3">
+        <h2>ekran3</h2>
+
+      </div>
+
+      <div class="ekran" id="ekran-4">
+        <h2>ekran4</h2>
+
+      </div>
+
+      <div class="ekran" id="ekran-5">
+        <h2>ekran5</h2>
+
+      </div>
+    </div>
+
+
+
+
+
+  </body>
+
+  </html>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script>
+    var ekranlar = document.getElementsByClassName("ekran");
+    var ekranlar$ = $('.ekran');
+
+    function ekrangec(ac) {
+      ekranAktif = ac;
+      ekranlar$.css('transform', 'scale(0.01)');
+      setTimeout(function () {
+        ekranlar$.hide();
+        $('#ekran-' + ac).show();
+        $('#ekran-' + ac).css('transform', 'scale(0.5)');
+        setTimeout(function () {
+          ekranlar$.css('transform', 'scale(1)')
+        }, 10)
+      }, 400);
+
+    }
+
+    var ekranAktif = 1;
+
+    window.addEventListener('keydown', function (e) {
+      ekranAktifOnce = ekranAktif;
+      if (e.which == 37) {
+        ekranAktif -= 1;
+      }
+      if (e.which == 39) {
+        ekranAktif += 1;
+      }
+      if (ekranAktif != ekranAktifOnce) {
+        ekrangec(ekranAktif);
+      }
+    })
+
+
+    var sorular = [
+      {
+        text: 'Nedir 1?',
+        cevap: 'a',
+        secenek: {
+          a: 'Budur',
+          b: 'Bu Değildir'
+        }
+      },
+      {
+        text: 'Nedir 2?',
+        cevap: 'b',
+        secenek: {
+          a: 'Budur',
+          b: 'Bu Değildir'
+        }
+      },
+      {
+        text: 'Nedir 3?',
+        cevap: 'a',
+        secenek: {
+          a: 'Budur',
+          b: 'Bu Değildir'
+        }
+      },
+      {
+        text: 'Nedir 4?',
+        cevap: 'b',
+        secenek: {
+          a: 'Budur',
+          b: 'Bu Değildir'
+        }
+      }
+    ];
+
+    var gecerliSoru = null;
+
+    function soruSor(soru) {
+      ekrangec(2);
+      $('#soru').text(soru.text);
+      $('#siklar').find('#a').text(soru.secenek.a);
+      $('#siklar').find('#b').text(soru.secenek.b);
+
+      gecerliSoru = soru;
+    }
+
+    soruSor(sorular[0]);
+
+    oyuncular = {
+      oyuncu1: {
+        skor: 0,
+        cevaplar: {
+
+        }
+      },
+      oyuncu2: {
+        skor: 0,
+        cevaplar: {
+
+        }
+      }
+    }
+    function cevapVer(oyuncu, cevap) {
+      oyuncu.cevaplar[soru.text] = cevap;
+
+      // bütün seçimleri kaldır
+      $('.secili').css('visibility', 'hidden');
+
+      // son seçimi işaretle
+      $('#siklar').find('#' + cevap).siblings('.secili').css('visibility', 'visible');
+      // cevap 1 defa verildiği zaman tekrar verilmesini engellemek mantıklı olabilir
+    }
+
+
+    function puanVer() {
+      if (gecerliSoru.cevap == oyuncular.oyuncu1.cevap) {
+        // doğru cevap
+        oyuncular.oyuncu1.skor++
+      }
+      if (gecerliSoru.cevap == oyuncular.oyuncu2.cevap) {
+        // doğru cevap
+        oyuncular.oyuncu2.skor++
+      }
+    }
+    window.addEventListener('keyup', function (e) {
+      //  w == 87
+      //  a == 65
+      //  s == 83
+      //  d == 68
+      if (e.which == 65) {
+        cevapVer(oyuncular.oyuncu1, 'a')
+      }
+
+      if (e.which == 87) {
+        cevapVer(oyuncular.oyuncu1, 'b')
+      }
+
+    });
+
+
+//# sourceURL=userscript.js
+  </script>
+</body>
+
+</html>
