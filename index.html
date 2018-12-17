@@ -4,137 +4,80 @@
 <head>
   <meta charset="UTF-8" />
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  </link>
   <style id="webmakerstyle">
-    html {
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      background-color: #009688;
-    }
-
-    #app {
-      border: 1px solid #fff;
-      width: 80%;
+    body{
+      background-image: url(https://1.bp.blogspot.com/-ixW-aBLVVLY/VxkyBHjPSyI/AAAAAAAAANU/f88ecTTt8LgyGleh7z1yY_4KWpJG0QZ4gCLcB/s1600/bau-stem.JPG);
       text-align: center;
-      margin: auto;
-      padding: 5px;
+    }
+    .cover {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: black;
+      opacity: .3;
+      z-index: 2;
+    }
+    .container{
       position: relative;
-      background-color: #ff9800;
-      margin-top: 10px;
-
+      z-index: 3;
     }
 
-
-    .ekran {
-      width: 100%;
-      min-height: 80vh;
-      margin: 2px;
-      display: none;
-      transition: all .3s;
-    }
-
-    #ekran-1 {
-      display: block;
-      left: 0px;
-    }
-
-    #ekran-2 {
-      position: relative;
-    }
-
-    #siklar {
-      width: 100%;
-      margin: auto;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      /* Bu özellik display flex olduğunda yeni satır olmasına izin veriyor */
-      flex-wrap: wrap;
-
-      position: absolute;
-      bottom: 20%
-    }
-
-
-    #siklar>.secenek {
-      border-radius: 8px;
-
-      width: 100%;
-      background-color: #FFB74D;
-      margin: 20px;
-      height: 150px;
-      text-align: center;
-      font-size: 2em;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .secili {
-      visibility: hidden;
-      font-size: 1.5em;
-      margin-left: 1em;
-    }
-
-    #soru {
-      font-size: 1.5em;
-    }
-  </style>
+.text-muted{
+  background-color: white;
+  margin: 80px;
+	color: blue;
+}
+.last-seconds{
+  color: red;
+}
+.option{
+  margin: 15px;
+}
+</style>
 </head>
 
 <body>
   <!DOCTYPE html>
-  <html>
+  <html lang="en">
 
   <head>
-    <title>Page Title</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Uzay</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous">
+
+    <link rel="stylesheet" href="./assets/css/style.css">
+
+    <link rel="icon" type="image/gif" href="./assets/images/IMG_3456.jpg" />
+
+
   </head>
 
   <body>
-    <div id="app">
-      <h1>PhotoBooth</h1>
-      <hr>
-      <div class="ekran" id="ekran-1">
-        <h2>ekran1</h2>
-      </div>
 
-      <div class="ekran" id="ekran-2">
-        <h2>Soru</h2>
-        <p id="soru"> </p>
-        <div id="siklar">
-          <div class="secenek"> <b>A)</b>
-            <div id="a"></div>
-            <div class="secili"> ✅ </div>
-          </div>
-          <div class="secenek"> <b>W)</b>
-            <div id="b"></div>
-            <div class="secili"> ✅ </div>
-          </div>
-        </div>
+    <div class="cover"></div>
+    <div class="container">
+      <div class="header text-center clearfix">
+        <h1 class="text-muted">PhotoBooth</h1>
       </div>
-
-      <div class="ekran" id="ekran-3">
-        <h2>ekran3</h2>
+      <div class="games">
 
       </div>
-
-      <div class="ekran" id="ekran-4">
-        <h2>ekran4</h2>
-
       </div>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-      <div class="ekran" id="ekran-5">
-        <h2>ekran5</h2>
-
-      </div>
-    </div>
-
-
-
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+      <script src="./assets/js/app.js"></script>
 
 
   </body>
@@ -142,141 +85,237 @@
   </html>
 
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script>
-    var ekranlar = document.getElementsByClassName("ekran");
-    var ekranlar$ = $('.ekran');
+    $(document).ready(function () {
 
-    function ekrangec(ac) {
-      ekranAktif = ac;
-      ekranlar$.css('transform', 'scale(0.01)');
-      setTimeout(function () {
-        ekranlar$.hide();
-        $('#ekran-' + ac).show();
-        $('#ekran-' + ac).css('transform', 'scale(0.5)');
-        setTimeout(function () {
-          ekranlar$.css('transform', 'scale(1)')
-        }, 10)
-      }, 400);
 
-    }
+   
 
-    var ekranAktif = 1;
-
-    window.addEventListener('keydown', function (e) {
-      ekranAktifOnce = ekranAktif;
-      if (e.which == 37) {
-        ekranAktif -= 1;
-      }
-      if (e.which == 39) {
-        ekranAktif += 1;
-      }
-      if (ekranAktif != ekranAktifOnce) {
-        ekrangec(ekranAktif);
-      }
     })
 
+    class Game {
+         constructor({questions, options, answers, keys, flip}){
+            this.correct = 0;
+            this.incorrect = 0;
+            this.unanswered = 0;
+            this.currentSet = 0;
+            this.timer = 20;
+            this.puan = 0;
+            this.timerOn = false;
+            this.timerId = null;
+            this.answered = { };
+            this.questions = questions;
+            this.options = options;
+            this.answers = answers;
+            this.keys = keys;
+            this.flip = flip;
+            this.id = Math.round(Math.random() * 10000);
+            this.$container = $(`
+            <div class="jumbotron jumbotron-fluid" id="game-${this.id}">
+              <div class="container">
+                <div class="game">
+                  <h2>Welcome To Our Quiz</h2>
+                  <h3>Let's Play</h3>
+                  <p class="lead remaining-time">Remaining Time: <span class="timer"></span></p>
+                  <p class="lead question"></p>
+                </div>
+                <div class="results">
+                </div>
+              </div>
+              <div class="row">
+                <div class="text-center choices">
+                  <button class="btn btn-info btn-lg start">Start Game</button>
+                  <div class="options">
+                  </div>
+                </div>
+              </div>
+            </div>`);
 
-    var sorular = [
-      {
-        text: 'Nedir 1?',
-        cevap: 'a',
-        secenek: {
-          a: 'Budur',
-          b: 'Bu Değildir'
+          $('.games').append(this.$container);
+           
+           if(this.flip){
+             this.keys.reverse();
+           }
+
+           this.$container.find(".remaining-time").hide();
+           this.$container.find(".start").on('click', this.startGame.bind(this));
+           $(document).on('click', '#game-'+this.id+' .option', this.guessChecker.bind(this));
+           var _this = this;
+           $(document).on('keyup', function(e){
+             if(!_this.$container.find('.option').is('*')){
+               return 0;
+             }
+            var key = e.key.toUpperCase()
+            if (key == _this.keys[0].toUpperCase()) {
+              _this.$container.find('.option').get(0).click();
+            } else {
+              _this.$container.find('.option').get(1).click();
+            }
+           });
+         }
+        startGame () {
+          this.currentSet = 0;
+          this.correct = 0;
+          this.incorrect = 0;
+          this.unanswered = 0;
+          this.puan = 0;
+          this.answered = {};
+
+          clearInterval(this.timerId);
+
+          this.$container.find('.game').show();
+
+          this.$container.find('.results').html('');
+
+          this.$container.find('.timer').text(this.timer);
+
+          this.$container.find('.start').hide();
+
+          this.$container.find('.remaining-time').show();
+
+          this.nextQuestion();
+
         }
-      },
-      {
-        text: 'Nedir 2?',
-        cevap: 'b',
-        secenek: {
-          a: 'Budur',
-          b: 'Bu Değildir'
+        nextQuestion () {
+          this.timer = 10;
+          this.$container.find('.timer').removeClass('last-seconds');
+          this.$container.find('.timer').text(this.timer);
+
+
+          if (!this.timerOn) { // timer kapalıysa
+            // bu timerRunning her saniye execute olacak
+            this.timerId = setInterval(this.timerRunning.bind(this), 1000);
+          }
+
+          // soru metni
+          var questionContent = Object.values(this.questions)[this.currentSet];
+          // soru metni render
+          this.$container.find('.question').text(questionContent);
+
+          // seçenekler
+          var questionOptions = Object.values(this.options)[this.currentSet];
+          // seçenekler render
+          var _this = this;
+          $.each(questionOptions, function (index, key) {
+            _this.$container.find('.options').append($('<button class="option btn btn-info btn-lg">' + _this.keys[index] + ' ) ' + key + '</button>'));
+          })
         }
-      },
-      {
-        text: 'Nedir 3?',
-        cevap: 'a',
-        secenek: {
-          a: 'Budur',
-          b: 'Bu Değildir'
+
+        timerRunning () {
+          if (this.timer > -1 && this.currentSet < Object.keys(this.questions).length) {
+            if (this.timer === 4) {
+              this.$container.find('.timer').addClass('last-seconds');
+            }
+          }
+
+          else if (this.timer < 0) {
+            // 10 saniye doldu
+            this.unanswered++;
+            this.result = false;
+            clearInterval(this.timerId);
+            resultId = setTimeout(this.guessResult.bind(this), 1000);
+            this.$container.find('.results').html('<h3>Out of time! The answer was ' + Object.values(this.answers)[this.currentSet] + '</h3>');
+          }
+
+          else if (this.currentSet === Object.keys(this.questions).length) {
+            // Son soru
+            this.endGame();
+          }
+          // zaman geçiyor
+          this.timer--;
+          // zamanı render ediyoruz
+          this.$container.find('.timer').text(this.timer);
         }
-      },
-      {
-        text: 'Nedir 4?',
-        cevap: 'b',
-        secenek: {
-          a: 'Budur',
-          b: 'Bu Değildir'
+        endGame() {
+          this.$container.find('.results')
+            .html('<h3>Thank you for playing!</h3>' +
+              '<p>Correct: ' + this.correct + '</p>' +
+              '<p>Incorrect: ' + this.incorrect + '</p>' +
+              '<p>Unaswered: ' + this.unanswered + '</p>' +
+              '<p>puan: ' + this.puan + '</p>' +
+              '<p>Please play again!</p>');
+
+          this.$container.find('.game').hide();
+
+          this.$container.find('.start').show();
         }
+        guessChecker (e) {
+          var el = e.currentTarget;
+          console.log(el);
+          if (this.answered[this.currentSet]) {
+            return;
+          }
+          this.answered[this.currentSet] = 1;
+          var resultId;
+          // cevap
+          var currentAnswer = Object.values(this.answers)[this.currentSet];
+
+          if ($(el).text() === currentAnswer) {
+
+            $(el).addClass('btn-success').removeClass('btn-info');
+
+            this.correct++;
+            resultId = setTimeout(this.guessResult.bind(this), 1000);
+            this.$container.find('.results').html('<h3>Correct Answer!</h3>');
+          }
+
+          else {
+
+            $(el).addClass('btn-danger').removeClass('btn-info');
+
+            this.incorrect++;
+            resultId = setTimeout(this.guessResult.bind(this), 1000);
+            this.$container.find('.results').html('<h3>Better luck next time! ' + currentAnswer + '</h3>');
+          }
+
+          clearInterval(this.timerId);
+
+        }
+
+        guessResult () {
+
+          this.currentSet++;
+
+          this.$container.find('.option').remove();
+          this.$container.find('.results h3').remove();
+
+          this.nextQuestion();
+
+        }
+
       }
-    ];
 
-    var gecerliSoru = null;
-
-    function soruSor(soru) {
-      ekrangec(2);
-      $('#soru').text(soru.text);
-      $('#siklar').find('#a').text(soru.secenek.a);
-      $('#siklar').find('#b').text(soru.secenek.b);
-
-      gecerliSoru = soru;
+    var createTriviaGame = function({questions, options, answers, keys, flip}){
+         var game = new Game({questions, options, answers, keys, flip});
     }
-
-    soruSor(sorular[0]);
-
-    oyuncular = {
-      oyuncu1: {
-        skor: 0,
-        cevaplar: {
-
-        }
+    var trivia = createTriviaGame({
+      questions: {
+        q1: 'Uzay Kimdir ?',
+        q2: 'Uzayın hangi sebzeye alerjisi vardır ?',
+        q3: 'Uzayın boyu kaç metredir ?',
+        q4: 'Uzay kaç ülkeye gitmiştir ?',
+        q5: "Uzay kaç kilodur?",
+        q6: 'Uzay hangi ülkede yaşamak istiyor ?',
       },
-      oyuncu2: {
-        skor: 0,
-        cevaplar: {
-
-        }
-      }
-    }
-    function cevapVer(oyuncu, cevap) {
-      oyuncu.cevaplar[soru.text] = cevap;
-
-      // bütün seçimleri kaldır
-      $('.secili').css('visibility', 'hidden');
-
-      // son seçimi işaretle
-      $('#siklar').find('#' + cevap).siblings('.secili').css('visibility', 'visible');
-      // cevap 1 defa verildiği zaman tekrar verilmesini engellemek mantıklı olabilir
-    }
-
-
-    function puanVer() {
-      if (gecerliSoru.cevap == oyuncular.oyuncu1.cevap) {
-        // doğru cevap
-        oyuncular.oyuncu1.skor++
-      }
-      if (gecerliSoru.cevap == oyuncular.oyuncu2.cevap) {
-        // doğru cevap
-        oyuncular.oyuncu2.skor++
-      }
-    }
-    window.addEventListener('keyup', function (e) {
-      //  w == 87
-      //  a == 65
-      //  s == 83
-      //  d == 68
-      if (e.which == 65) {
-        cevapVer(oyuncular.oyuncu1, 'a')
-      }
-
-      if (e.which == 87) {
-        cevapVer(oyuncular.oyuncu1, 'b')
-      }
-
-    });
-
-
+        options: {
+          q1: ['Müzisyen', 'Dansöz'],
+          q2: ['Domates', 'Brokoli'],
+          q3: ['1.92', '1.95'],
+          q4: ['17', '20'],
+          q5: ['115', '120'],
+          q6: ['Hollanda', 'Kanada'],
+        },
+        answers: {
+          q1: 'Müzisyen',
+          q2: 'Domates',
+          q3: '1.92',
+          q4: '17',
+          q5: '115',
+          q6: 'Kanada',
+        },
+        keys: ['A', 'S'],
+        flip: true
+        });
 //# sourceURL=userscript.js
   </script>
 </body>
