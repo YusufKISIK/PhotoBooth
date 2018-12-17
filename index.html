@@ -197,7 +197,7 @@
           // seçenekler render
           var _this = this;
           $.each(questionOptions, function (index, key) {
-            _this.$container.find('.options').append($('<button class="option btn btn-info btn-lg">' + _this.keys[index] + ' ) ' + key + '</button>'));
+            _this.$container.find('.options').append($('<button class="option btn btn-info btn-lg">' + _this.keys[index] + ' ) <span class="val">' + key + '</span></button>'));
           })
         }
 
@@ -250,7 +250,7 @@
           // cevap
           var currentAnswer = Object.values(this.answers)[this.currentSet];
 
-          if ($(el).text() === currentAnswer) {
+          if ($(el).find('.val').text() === currentAnswer) {
 
             $(el).addClass('btn-success').removeClass('btn-info');
 
