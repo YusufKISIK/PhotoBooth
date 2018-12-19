@@ -86,13 +86,9 @@
 
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script>
-    $(document).ready(function () {
-
-
+     $(document).ready(function () {
    
-
     })
-
     class Game {
          constructor({questions, options, answers, keys, flip}){
             this.correct = 0;
@@ -130,13 +126,11 @@
                 </div>
               </div>
             </div>`);
-
           $('.games').append(this.$container);
            
            if(this.flip){
              this.keys.reverse();
            }
-
            this.$container.find(".remaining-time").hide();
            this.$container.find(".start").on('click', this.startGame.bind(this));
            $(document).on('click', '#game-'+this.id+' .option', this.guessChecker.bind(this));
@@ -160,38 +154,28 @@
           this.unanswered = 0;
           this.puan = 0;
           this.answered = {};
-
           clearInterval(this.timerId);
-
           this.$container.find('.game').show();
-
           this.$container.find('.results').html('');
-
           this.$container.find('.timer').text(this.timer);
-
           this.$container.find('.start').hide();
-
           this.$container.find('.remaining-time').show();
-
           this.nextQuestion();
-
+          this.player1 = new player ();
+          this.player2 = new player ();
         }
         nextQuestion () {
-          this.timer = 10;
+          this.timer = 5;
           this.$container.find('.timer').removeClass('last-seconds');
           this.$container.find('.timer').text(this.timer);
-
-
           if (!this.timerOn) { // timer kapalıysa
             // bu timerRunning her saniye execute olacak
             this.timerId = setInterval(this.timerRunning.bind(this), 1000);
           }
-
           // soru metni
           var questionContent = Object.values(this.questions)[this.currentSet];
           // soru metni render
           this.$container.find('.question').text(questionContent);
-
           // seçenekler
           var questionOptions = Object.values(this.options)[this.currentSet];
           // seçenekler render
@@ -200,23 +184,20 @@
             _this.$container.find('.options').append($('<button class="option btn btn-info btn-lg">' + _this.keys[index] + ' ) <span class="val">' + key + '</span></button>'));
           })
         }
-
         timerRunning () {
           if (this.timer > -1 && this.currentSet < Object.keys(this.questions).length) {
             if (this.timer === 4) {
               this.$container.find('.timer').addClass('last-seconds');
             }
           }
-
           else if (this.timer < 0) {
             // 10 saniye doldu
             this.unanswered++;
             this.result = false;
             clearInterval(this.timerId);
-            resultId = setTimeout(this.guessResult.bind(this), 1000);
+            resultId = setTimeout(this.guessResult.bind(this), 500);
             this.$container.find('.results').html('<h3>Out of time! The answer was ' + Object.values(this.answers)[this.currentSet] + '</h3>');
           }
-
           else if (this.currentSet === Object.keys(this.questions).length) {
             // Son soru
             this.endGame();
@@ -234,9 +215,7 @@
               '<p>Unaswered: ' + this.unanswered + '</p>' +
               '<p>puan: ' + this.puan + '</p>' +
               '<p>Please play again!</p>');
-
           this.$container.find('.game').hide();
-
           this.$container.find('.start').show();
         }
         guessChecker (e) {
@@ -249,42 +228,27 @@
           var resultId;
           // cevap
           var currentAnswer = Object.values(this.answers)[this.currentSet];
-
           if ($(el).find('.val').text() === currentAnswer) {
-
             $(el).addClass('btn-success').removeClass('btn-info');
-
             this.correct++;
             resultId = setTimeout(this.guessResult.bind(this), 1000);
             this.$container.find('.results').html('<h3>Correct Answer!</h3>');
           }
-
           else {
-
             $(el).addClass('btn-danger').removeClass('btn-info');
-
             this.incorrect++;
             resultId = setTimeout(this.guessResult.bind(this), 1000);
             this.$container.find('.results').html('<h3>Better luck next time! ' + currentAnswer + '</h3>');
           }
-
           clearInterval(this.timerId);
-
         }
-
         guessResult () {
-
           this.currentSet++;
-
           this.$container.find('.option').remove();
           this.$container.find('.results h3').remove();
-
           this.nextQuestion();
-
         }
-
       }
-
     var createTriviaGame = function({questions, options, answers, keys, flip}){
          var game = new Game({questions, options, answers, keys, flip});
     }
@@ -306,12 +270,12 @@
           q6: ['Hollanda', 'Kanada'],
         },
         answers: {
-          q1: 'Müzisyen',
-          q2: 'Domates',
-          q3: '1.92',
-          q4: '17',
-          q5: '115',
-          q6: 'Kanada',
+         q1: 'Müzisyen',
+         q2: 'Domates',
+         q3: '1.92',
+         q4: '17',
+         q5: '115',
+         q6: 'Kanada',
         },
         keys: ['A', 'S'],
         flip: true
