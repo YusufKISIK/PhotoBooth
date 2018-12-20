@@ -170,7 +170,7 @@
             // -------
           var _this = this;
           window.addEventListener('keyup', function(e){
-            if(Game.on != true) return 0;
+            if(Game.answering_on != true) return 0;
 
             var key = e.key.toUpperCase();
             var question = Object.values(Game.questions)[Game.currentQuestion];
@@ -242,9 +242,8 @@
         timerMilliseconds: null,
         timerId : null,
         $container : $(`#game-1`),
-        on: false,
+        answering_on: false,
         startGame: function(player1, player2) {
-          Game.on = true;
           Game.currentQuestion = 0;
           clearInterval(Game.timerId);
 
@@ -264,7 +263,7 @@
 
         },
         endGame: function () {
-          Game.on = false;
+          Game.answering_on = false;
           clearInterval(Game.timerId);
           Game.$container.find('.results')
             .html('<h3>Thank you for playing!</h3>' + Game.player1.outputResults() + Game.player2.outputResults() );
@@ -273,6 +272,7 @@
           Game.$container.find('.start').show();
         },
           nextQuestion: function() {
+            Game.answering_on = true;
             Game.timerMilliseconds = 5000;
             Game.$container.find('.timer').removeClass('last-seconds');
             Game.$container.find('.timer').text(Game.timer);
@@ -308,6 +308,7 @@
               Game.$container.find('.results').html('<h3>Out of time! The answer was ' + Object.values(Game.answers)[Game.currentQuestion] + '</h3>');
               
               Game.currentQuestion++
+              Game.answering_on = false;
               setTimeout(function(){
                 Game.$container.find('.opt-container').remove();
                 Game.$container.find('.results h3').remove();
