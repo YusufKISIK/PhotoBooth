@@ -228,8 +228,17 @@
             '<p>Incorrect: ' + this.false.length + '</p>' +
             '<p>Unanswered: ' + this.unanswered + '</p>' +
             '<p>Total: ' + this.total + '</p>' +
-            '<p>Please play again!</p>' +
             '</div>';
+        }.bind(this);
+
+        this.reset = function(){
+          this.puan = 0;
+          this.correct = [];
+          this.false = [];
+          this.answered = {};
+          this.unanswered = [];
+
+          this.questionsAsked = [];
         }.bind(this);
 
         return this;
@@ -266,14 +275,16 @@
           Game.answering_on = false;
           clearInterval(Game.timerId);
           Game.$container.find('.results')
-            .html('<h3>Thank you for playing!</h3>' + Game.player1.outputResults() + Game.player2.outputResults() );
+            .html('<h3 class="end-game">Thank you for playing!</h3>' + Game.player1.outputResults() + Game.player2.outputResults() +  '<p>Please play again!</p>' );
 
           Game.$container.find('.game').hide();
-          Game.$container.find('.start').show();
+
+          Game.player1.reset();
+          Game.player2.reset();
         },
           nextQuestion: function() {
             Game.answering_on = true;
-            Game.timerMilliseconds = 5000;
+            Game.timerMilliseconds = 500;
             Game.$container.find('.timer').removeClass('last-seconds');
             Game.$container.find('.timer').text(Game.timer);
             // bu timerRunning her saniye execute olacak
@@ -313,7 +324,7 @@
                 Game.$container.find('.opt-container').remove();
                 Game.$container.find('.results h3').remove();
                 Game.nextQuestion();
-                }, 1200);
+                }, 120);
             }
             else if (Game.currentQuestion === Object.keys(Game.questions).length) {
               // Son soru
@@ -330,9 +341,10 @@
         }
 
   // ********************* **************************** ************************** *******
-        
+
 var yusuf = new Player('yusuf', ['a', 's']);
 var ali = new Player('ali', ['d', 'w']);
+
 
 Game.$container.find(".remaining-time").hide();
 Game.$container.find(".start").on('click', function(){
@@ -371,6 +383,14 @@ var question_data = {
       if (Game.$container.find(".start").is(':visible')) {
         e.preventDefault();
         Game.$container.find(".start").click();
+      }
+      if(Game.$container.find(".end-game").is('*')){
+        Game.$container.find('.results').html('');
+        Game.$container.find('.remaining-time').hide();
+        Game.$container.find('.question').text('');
+
+        Game.$container.find('.game').show();
+        Game.$container.find('.start').show();
       }
     });
 
