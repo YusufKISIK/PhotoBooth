@@ -147,10 +147,17 @@ var Game = {
         Game.$container.find('.game').hide();
         Game.player1.reset();
         Game.player2.reset();
+        
     },
+
+    Kamera: function () {
+        
+    },
+
+
     nextQuestion: function () {
         Game.answering_on = true;
-        Game.timerMilliseconds = 10000;
+        Game.timerMilliseconds = 1000;
         Game.$container.find('.timer').removeClass('last-seconds');
         Game.$container.find('.timer').text(Game.timer);
         // bu timerRunning her saniye execute olacak
@@ -227,7 +234,14 @@ $(window).on('keyup', function (e) {
         e.preventDefault();
         Game.$container.find(".start").click();
     }
-    if (Game.$container.find(".end-game").is('*')) {
+    else if (Game.$container.find(".end-game").is('*')) {
+        Game.$container.find('.results').html('');
+        Game.$container.find('.remaining-time').hide();
+        Game.$container.find('.question').text('');
+        Game.$container.find('.game').show();
+        Game.$container.find('.kamera').show();
+    }
+    else if (Game.$container.find(".kamera").is('*')) {
         Game.$container.find('.results').html('');
         Game.$container.find('.remaining-time').hide();
         Game.$container.find('.question').text('');
@@ -236,4 +250,3 @@ $(window).on('keyup', function (e) {
     }
 });
 
-//# sourceURL=userscript.js
