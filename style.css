@@ -2,6 +2,7 @@
 body{
   background-image: url(https://static1.squarespace.com/static/588bab1086e6c0ffe0e62b3a/588bbb3459cc68c61c882d1c/588de2009f74563ea54ab42c/1485693441134/light+blue.jpg?format=500w);
   text-align: center;
+
 }
 
 
@@ -11,13 +12,14 @@ body{
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: black;
+    background-color: rgb(0, 0, 0);
     opacity: .3;
     z-index: 2;
   }
   .container{
     position: relative;
     z-index: 3;
+   
   }
 .text-muted{
 margin: 125px;
@@ -79,3 +81,10 @@ left: 0;
 
 }
 
+.Kamera {
+  position: absolute;
+  width: 100%;
+  bottom: 10px;
+  text-align: center;
+  font-size: 18px;
+}

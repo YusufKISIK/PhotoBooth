@@ -234,14 +234,14 @@ $(window).on('keyup', function (e) {
         e.preventDefault();
         Game.$container.find(".start").click();
     }
-    else if (Game.$container.find(".end-game").is('*')) {
+    if (Game.$container.find(".end-game").is('*')) {
         Game.$container.find('.results').html('');
         Game.$container.find('.remaining-time').hide();
         Game.$container.find('.question').text('');
         Game.$container.find('.game').show();
         Game.$container.find('.kamera').show();
     }
-    else if (Game.$container.find(".kamera").is('*')) {
+    if (Game.$container.find(".kamera").is('*')) {
         Game.$container.find('.results').html('');
         Game.$container.find('.remaining-time').hide();
         Game.$container.find('.question').text('');
