@@ -1,0 +1,80 @@
+
+body{
+  background-image: url(https://static1.squarespace.com/static/588bab1086e6c0ffe0e62b3a/588bbb3459cc68c61c882d1c/588de2009f74563ea54ab42c/1485693441134/light+blue.jpg?format=500w);
+  text-align: center;
+}
+
+
+.cover {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    opacity: .3;
+    z-index: 2;
+  }
+  .container{
+    position: relative;
+    z-index: 3;
+  }
+.text-muted{
+margin: 125px;
+/* 	background-image: url(http://images.clipartpanda.com/cloud-clipart-bubble-cloud-clipart-1.jpg); */
+
+
+
+}
+.last-seconds{
+color: red;
+
+}
+.option{
+margin: 0 5px;
+}
+.player-selection{
+visibility: hidden;
+padding: 10px;
+border-radius: 4px;
+vertical-align: center;
+font-size: 20px;
+font-weight: bold;
+background-color: #f2868b;
+text-transform: capitalize;
+}
+.opt-container{
+display: flex;
+width: 50%;
+justify-content: center;
+margin: 5px auto;
+}
+.player-result h2{
+  text-transform: capitalize;
+  
+}
+.player-result {
+  width: 48%;
+  float: right;
+  border: 1px solid;
+  margin: 1%;
+  color: #15726e;
+}
+
+
+.BauStem {
+position: fixed;
+bottom: 0;
+right: 0;
+
+
+}
+
+
+
+.Inteach {
+position: fixed;
+bottom: 0;
+left: 0;
+
+}
