@@ -210,16 +210,43 @@ var Game = {
 }
 
 var video = document.querySelector("#videoElement");
- 
-if (navigator.mediaDevices.getUserMedia) {       
-    navigator.mediaDevices.getUserMedia({video: true})
-  .then(function(stream) {
-    video.srcObject = stream;
-  })
-  .catch(function(err0r) {
-    console.log("Something went wrong!");
-  });
+var videoPermission = false;
+
+function hideVideo(){
+    video.pause();
+    $(video).parent().hide();
 }
+
+function showVideo(){
+    if(!videoPermission){   
+        videoPermission = true;
+        if (navigator.mediaDevices.getUserMedia) {       
+            navigator.mediaDevices.getUserMedia({video: true})
+        .then(function(stream) {
+            video.srcObject = stream;
+            $(video).parent().show();
+        })
+        .catch(function(err0r) {
+            console.log("Something went wrong!");
+        });
+        }
+    }else{
+        video.play();
+        $(video).parent().show();
+    }
+}
+
+$('.open-cam').click(function(){
+    $(this).hide();
+    $('.close-cam').show();
+    showVideo();
+});
+
+$('.close-cam').click(function(){
+    $(this).hide();
+    $('.open-cam').show();
+    hideVideo();
+});
 
 // ********************* **************************** ************************** *******
 var yusuf = new Player('yusuf', ['a', 's']);
