@@ -75,6 +75,7 @@ function Player(name, keys) {
                 _this.answer(question, answer, options[1]);
 
             }
+            
         })
         // -------
     }.bind(this);
@@ -130,6 +131,7 @@ var Game = {
         Game.$container.find('.results').html('');
         Game.$container.find('.timer').text(Game.timerMilliseconds);
         Game.$container.find('.start').hide();
+        Game.$container.find('.kamera').hide();
         Game.$container.find('.remaining-time').show();
         Game.player1 = player1;
         Game.player2 = player2;
@@ -150,10 +152,7 @@ var Game = {
         
     },
 
-    Kamera: function () {
-        
-    },
-
+ 
 
     nextQuestion: function () {
         Game.answering_on = true;
@@ -209,6 +208,19 @@ var Game = {
 
     }
 }
+
+var video = document.querySelector("#videoElement");
+ 
+if (navigator.mediaDevices.getUserMedia) {       
+    navigator.mediaDevices.getUserMedia({video: true})
+  .then(function(stream) {
+    video.srcObject = stream;
+  })
+  .catch(function(err0r) {
+    console.log("Something went wrong!");
+  });
+}
+
 // ********************* **************************** ************************** *******
 var yusuf = new Player('yusuf', ['a', 's']);
 var ali = new Player('ali', ['d', 'w']);
@@ -235,18 +247,16 @@ $(window).on('keyup', function (e) {
         Game.$container.find(".start").click();
     }
     if (Game.$container.find(".end-game").is('*')) {
-        Game.$container.find('.results').html('');
+        Game.$container.find('.results').hide('');
         Game.$container.find('.remaining-time').hide();
-        Game.$container.find('.question').text('');
-        Game.$container.find('.game').show();
+        Game.$container.find('.question').hide('');
+        Game.$container.find('.game').hide();
         Game.$container.find('.kamera').show();
     }
     if (Game.$container.find(".kamera").is('*')) {
-        Game.$container.find('.results').html('');
-        Game.$container.find('.remaining-time').hide();
-        Game.$container.find('.question').text('');
         Game.$container.find('.game').show();
-        Game.$container.find('.start').show();
-    }
+
+
+    }     
 });
 

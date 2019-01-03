@@ -22,8 +22,8 @@ body{
    
   }
 .text-muted{
-margin: 125px;
-/* 	background-image: url(http://images.clipartpanda.com/cloud-clipart-bubble-cloud-clipart-1.jpg); */
+margin: 10px;
+background-image: url(http://images.clipartpanda.com/cloud-clipart-bubble-cloud-clipart-1.jpg); 
 
 
 
@@ -87,4 +87,16 @@ left: 0;
   bottom: 10px;
   text-align: center;
   font-size: 18px;
+}
+
+ .kamera {
+  margin: 0px auto;
+  width: 700px;
+  height: 535px;
+  border: 10px #000 solid;
+}
+.videoElement {
+  width: 500px;
+  height: 400px;
+  background-color: #666;
 }
