@@ -210,17 +210,6 @@ var Game = {
 }
 
 var video = document.querySelector("#videoElement");
-HEAD
-
-if (navigator.mediaDevices.getUserMedia) {       
-    navigator.mediaDevices.getUserMedia({video: true})
-  .then(function(stream) {
-    video.srcObject = stream;
-  })
-  .catch(function(err0r) {
-    console.log("Something went wrong!");
-  });
-
 var videoPermission = false;
 
 function hideVideo(){
@@ -241,11 +230,12 @@ function showVideo(){
             console.log("Something went wrong!");
         });
         }
-    }else{
+    }
+    
+    else{
         video.play();
         $(video).parent().show();
     }
-
 }
 
 $('.open-cam').click(function(){
@@ -284,6 +274,7 @@ $(window).on('keyup', function (e) {
     if (Game.$container.find(".start").is(':visible')) {
         e.preventDefault();
         Game.$container.find(".start").click();
+        Game.$container.find('.open-cam').hide();
     }
     if (Game.$container.find(".end-game").is('*')) {
         Game.$container.find('.results').hide('');
@@ -291,12 +282,10 @@ $(window).on('keyup', function (e) {
         Game.$container.find('.question').hide('');
         Game.$container.find('.game').hide();
         Game.$container.find('.kamera').show();
+        Game.$container.find(".open-cam").click();
     }
     if (Game.$container.find(".kamera").is('*')) {
         Game.$container.find('.game').show();
-
-
+    
     }     
 });
-
-}
