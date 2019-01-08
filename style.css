@@ -7,21 +7,27 @@ body{
 
 
 .cover {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgb(0, 0, 0);
-    opacity: .3;
-    z-index: 2;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(0, 0, 0);
+  opacity: .3;
+  z-index: 2;
   }
+
+
+
   .container{
     position: relative;
     z-index: 3;
-   
+  
   }
-.text-muted{
+
+
+
+  .text-muted{
 margin: 10px;
 background-image: url(http://images.clipartpanda.com/cloud-clipart-bubble-cloud-clipart-1.jpg); 
 
@@ -91,7 +97,7 @@ left: 0;
 
  .kamera {
   margin: 0px auto;
-  width: 700px;
+  width:  700px;
   height: 535px;
   border: 10px #000 solid;
 }
@@ -100,3 +106,4 @@ left: 0;
   height: 400px;
   background-color: #666;
 }
+

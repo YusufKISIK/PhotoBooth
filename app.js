@@ -209,6 +209,23 @@ var Game = {
     }
 }
 
+
+    var takeScreenShot = function() {
+            html2canvas(document.getElementsByClassName("kamera"), {
+              onrendered: function (canvas) {
+      var tempcanvas=document.createElement('canvas');
+            tempcanvas.width=350;
+            tempcanvas.height=350;
+      var context=tempcanvas.getContext('2d');
+            context.drawImage(canvas,112,0,288,200,0,0,350,350);
+      var link=document.createElement("a");
+            link.href=tempcanvas.toDataURL('image/jpg');   //function blocks CORS
+            link.download = 'screenshot.jpg';
+            link.click();
+        }
+    });
+}
+
 var video = document.querySelector("#videoElement");
 var videoPermission = false;
 
@@ -244,7 +261,7 @@ $('.open-cam').click(function(){
     showVideo();
 });
 
-$('.close-cam').click(function(){
+   $('.close-cam').click(function(){
     $(this).hide();
     $('.open-cam').show();
     hideVideo();
@@ -260,12 +277,15 @@ Game.$container.find(".start").on('click', function () {
 var question_data = {
     questions: {
         q1: 'Uzay Kimdir ?',
+        q2: 'Kağan Kimdir ?',
     },
     options: {
         q1: ['Müzisyen', 'Mühendis'],
+        q2: ['Müzisyen', 'Mühendis'],
     },
     answers: {
         q1: 'Mühendis',
+        q2: 'Mühendis',
 
     }
 };

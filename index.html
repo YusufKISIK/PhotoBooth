@@ -55,8 +55,17 @@
             
             <button class="btn btn-danger btn-lg close-cam" style="display: none;"> Close Game Cam </button>
 
+
+            
             <div class="kamera" style="display: none"> <em> Görüntü twitter da paylaşlacaktır. </em>
             
+              
+
+              <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+              <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+              <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script> 
+              <button onclick="takeScreenShot()">Snapshot</button>
+              
               <video autoplay="true" id="videoElement"> </video>
             
             </div>
