@@ -211,20 +211,24 @@ var Game = {
 
 
     var takeScreenShot = function() {
-            html2canvas(document.getElementsByClassName("kamera"), {
-              onrendered: function (canvas) {
-      var tempcanvas=document.createElement('canvas');
-            tempcanvas.width=350;
-            tempcanvas.height=350;
-      var context=tempcanvas.getContext('2d');
-            context.drawImage(canvas,112,0,288,200,0,0,350,350);
-      var link=document.createElement("a");
-            link.href=tempcanvas.toDataURL('image/jpg');   //function blocks CORS
-            link.download = 'screenshot.jpg';
-            link.click();
-        }
-    });
-}
+        var video = document.querySelector("#videoElement");
+        var canvas = document.createElement('canvas');
+        canvas.width = 640;
+        canvas.height = 480;
+        var ctx = canvas.getContext('2d');
+
+        //draw image to canvas. scale to target dimensions
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+        //convert to desired file format
+
+        var link = document.createElement('a');
+        link.href = canvas.toDataURL('image/jpeg'); // can also use 'image/png'
+        link.download = 'screenshot.png';
+        link.click();
+
+
+    }
 
 var video = document.querySelector("#videoElement");
 var videoPermission = false;
